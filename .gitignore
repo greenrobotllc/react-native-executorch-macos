@@ -1,0 +1,39 @@
+# Node / RN
+node_modules/
+*.log
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Xcode / Derived
+DerivedData/
+*.xcworkspace/
+*.xcuserdatad/
+
+# ExecuTorch binaries (do not commit large artifacts)
+macos/ExecuTorchFrameworks/
+macos/executorch-install/lib/
+
+# Allow placeholders
+!macos/ExecuTorchFrameworks/.gitkeep
+!macos/executorch-install/lib/.gitkeep
+!macos/executorch-install/include/.gitkeep
+
+
+# Example app (generated)
+example/**/node_modules/
+example/**/Pods/
+example/**/ios/build/
+example/**/macos/build/
+example/**/android/app/build/
+example/**/vendor/
+example/**/vendor/bundle/
+
+# ExecuTorch headers dropped locally (keep only placeholder)
+macos/executorch-install/include/
+
+# Xcode user data and misc
+xcuserdata/
+*.xcuserstate
+.DS_Store

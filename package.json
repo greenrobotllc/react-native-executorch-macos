@@ -1,0 +1,29 @@
+{
+  "name": "react-native-executorch-macos",
+  "version": "0.1.0",
+  "description": "Python-free LLM inference for React Native macOS using ExecuTorch C++ Runner API",
+  "license": "MIT",
+  "author": "Green Robot LLC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_ORG/react-native-executorch-macos"
+  },
+  "keywords": [
+    "react-native",
+    "macos",
+    "executorch",
+    "llm",
+    "xnnpack"
+  ],
+  "main": "src/index.ts",
+  "types": "src/index.d.ts",
+  "peerDependencies": {
+    "react-native-macos": ">=0.74.0"
+  },
+  "scripts": {
+    "lint": "echo 'no lint configured'",
+    "build": "echo 'TypeScript consumed by Metro; no build step'",
+    "prepare": "echo 'No prepare step'"
+  }
+}
+
