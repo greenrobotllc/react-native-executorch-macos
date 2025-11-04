@@ -6,14 +6,14 @@ Pod::Spec.new do |s|
   s.name         = "RNExecuTorch"
   s.version      = package['version']
   s.summary      = "React Native bridge for PyTorch ExecuTorch on macOS"
-  s.homepage     = "https://github.com/greenrobotllc/alientavern-v2"
+  s.homepage     = "https://github.com/greenrobotllc/react-native-executorch-macos"
   s.license      = package['license']
   s.author       = { "Green Robot LLC" => "andy.triboletti@gmail.com" }
   s.platform     = :osx, "11.0"
   if ENV['LOCAL_POD']
     s.source       = { :path => '.' }
   else
-    s.source       = { :git => "https://github.com/greenrobotllc/alientavern-v2.git", :tag => "v#{s.version}" }
+    s.source       = { :git => "https://github.com/greenrobotllc/react-native-executorch-macos.git", :tag => "v#{s.version}" }
   end
   
   s.source_files = "**/*.{h,m,mm}"

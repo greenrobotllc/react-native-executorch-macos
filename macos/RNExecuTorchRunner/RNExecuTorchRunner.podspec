@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.name         = "RNExecuTorchRunner"
   s.version      = package['version']
   s.summary      = "React Native bridge for ExecuTorch C++ Runner (Python-free LLM inference)"
-  s.homepage     = "https://github.com/YOUR_ORG/react-native-executorch-macos"
+  s.homepage     = "https://github.com/greenrobotllc/react-native-executorch-macos"
   s.license      = package['license'] || "MIT"
   s.author       = { "Green Robot LLC" => "andy.triboletti@gmail.com" }
   s.platform     = :osx, "11.0"
