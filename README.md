@@ -125,3 +125,87 @@ MIT
 ## Contributing
 PRs welcome! See CONTRIBUTING.md. Be mindful of large binary assets; prefer fetch/build scripts or documentation over committing binaries.
 
+
+## Example app quick-start (macOS)
+
+Follow these steps to build and run the example app in this repo:
+
+1. Install JS deps (creates node_modules so the Podfile can load react_native_pods)
+
+```bash
+cd example/RNExecuTorchRunnerExample
+npm install
+```
+
+1. Populate ExecuTorch binaries in this repo (not committed)
+
+- Place your ExecuTorch xcframeworks under `macos/ExecuTorchFrameworks/`
+- Place `install/include` and `install/lib` under `macos/executorch-install/`
+
+1. Install Pods for macOS
+
+```bash
+bundle install
+bundle exec pod install --project-directory=macos
+# or: pod install --project-directory=macos
+```
+
+1. Make Metro resolve the local package (when using the example)
+
+Create/ensure `example/RNExecuTorchRunnerExample/metro.config.js` contains:
+
+```js
+const path = require('path');
+const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const defaultConfig = getDefaultConfig(__dirname);
+module.exports = mergeConfig(defaultConfig, {
+  resolver: {
+    ...defaultConfig.resolver,
+    unstable_enableSymlinks: true,
+  },
+  watchFolders: [
+    path.resolve(__dirname, '..', '..'), // package root
+  ],
+});
+```
+
+1. Open the workspace (not the project) and run
+
+```bash
+open macos/RNExecuTorchRunnerExample.xcworkspace
+```
+- In Xcode select scheme `RNExecuTorchRunnerExample-macOS` and Build/Run.
+
+1. Set model/tokenizer paths in the example `App.tsx` before running
+
+```ts
+const modelPath = '/absolute/path/to/model.pte';
+const tokenizerPath = '/absolute/path/to/tokenizer.json';
+```
+
+- Replace the placeholders with absolute paths on your machine.
+- Example:
+
+  modelPath: /absolute/path/to/your/model.pte
+  tokenizerPath: /absolute/path/to/your/tokenizer.json
+
+The example UI is interactive: after the model loads, type a prompt and press “Generate”.
+
+### Example UI (screenshot)
+
+![Interactive prompt and output on macOS](docs/images/example-ui.png)
+
+### Where do I get model.pte and tokenizer.json?
+
+- Use existing exports from your project (quick start): point the example to your existing `.pte` and tokenizer file(s).
+- Or export your own:
+  - Produce an ExecuTorch LLM `.pte` for your model (e.g. SmolLM2) using the ExecuTorch LLM export pipeline with XNNPACK enabled.
+  - Provide a matching tokenizer file:
+    - `tokenizer.json` (HuggingFace tokenizers) with `tokenizerType: 'huggingface'`
+    - or a SentencePiece `.model` with `tokenizerType: 'sentencepiece'`
+  - See the official ExecuTorch docs for up-to-date export steps and supported models: [pytorch.org/executorch](https://pytorch.org/executorch/)
+
+Troubleshooting:
+
+- If you see "Cannot find module 'react-native-executorch-macos'": Metro is not resolving the local package. Ensure step (4) is applied and re-run.
+- If you see link warnings about newer macOS version: safe to ignore or bump the deployment target to macOS 12 in the example target.
